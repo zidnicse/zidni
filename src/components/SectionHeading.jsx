@@ -9,6 +9,27 @@ export const SectionHeading = ({
   className = ''
 }) => {
   const isCenter = align === 'center';
+  const words = title.split(' ');
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.05
+      }
+    }
+  };
+
+  const wordVariants = {
+    hidden: { opacity: 0, y: 16 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, ease: 'easeOut' }
+    }
+  };
 
   return (
     <motion.div
@@ -25,9 +46,20 @@ export const SectionHeading = ({
         </div>
       )}
 
-      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-mainText">
-        {title}
-      </h2>
+      {/* Sequential word-by-word title reveal */}
+      <motion.h2
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-50px' }}
+        className={`text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-mainText flex flex-wrap gap-x-2.5 ${isCenter ? 'justify-center' : 'justify-start'}`}
+      >
+        {words.map((word, index) => (
+          <motion.span key={index} variants={wordVariants} className="inline-block">
+            {word}
+          </motion.span>
+        ))}
+      </motion.h2>
 
       {subtitle && (
         <p className="mt-4 text-base sm:text-lg text-secondaryText leading-relaxed">

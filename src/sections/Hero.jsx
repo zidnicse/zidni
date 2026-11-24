@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Sparkles, Terminal, ArrowUpRight, Server, Plug, Bot, Mail } from 'lucide-react';
 import { GithubIcon } from '../utils/icons';
-import { personalData, floatingInterestCards } from '../data/portfolioData';
+import { personalData, floatingInterestCards, rotatingTitles } from '../data/portfolioData';
+import { TypewriterTitle } from '../components/TypewriterTitle';
 import { SocialLinks } from '../components/SocialLinks';
 
 export const Hero = () => {
@@ -24,6 +25,28 @@ export const Hero = () => {
         return <Bot className="w-4 h-4 text-purple-400" />;
       default:
         return <Sparkles className="w-4 h-4 text-primaryAccent" />;
+    }
+  };
+
+  const nameWords = personalData.fullName.split(' ');
+
+  const nameContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const nameWordVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' }
     }
   };
 
@@ -51,16 +74,28 @@ export const Hero = () => {
               </span>
             </div>
 
-            {/* Main Heading */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-mainText tracking-tight leading-tight">
-              {personalData.fullName}
-            </h1>
+            {/* Main Heading - Words Animate In One After Another */}
+            <motion.h1
+              variants={nameContainerVariants}
+              initial="hidden"
+              animate="visible"
+              className="text-4xl sm:text-5xl lg:text-6xl font-black text-mainText tracking-tight leading-tight flex flex-wrap gap-x-3 gap-y-1"
+            >
+              {nameWords.map((word, idx) => (
+                <motion.span key={idx} variants={nameWordVariants} className="inline-block">
+                  {word}
+                </motion.span>
+              ))}
+            </motion.h1>
 
-            {/* Professional Title & Supporting Headline */}
+            {/* Dynamic Rotating Titles (Typewriter Effect - Titles Appear One After Another) */}
             <div className="space-y-2">
-              <p className="text-xl sm:text-2xl font-bold accent-gradient-text">
-                {personalData.professionalIdentity}
-              </p>
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-mono text-secondaryText uppercase tracking-wider">
+                  I am a
+                </span>
+                <TypewriterTitle titles={rotatingTitles} />
+              </div>
               <p className="text-base sm:text-lg font-medium text-mainText/90">
                 {personalData.supportingHeadline}
               </p>

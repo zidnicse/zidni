@@ -28,6 +28,13 @@ export const personalData = {
   profileImage: profileImg,
 };
 
+export const rotatingTitles = [
+  "Backend Developer",
+  "AI Integration Enthusiast",
+  "RESTful API Designer",
+  "Server-Side Engineer"
+];
+
 export const floatingInterestCards = [
   { id: 1, title: "Backend Development", icon: "Server" },
   { id: 2, title: "API Integration", icon: "Plug" },
