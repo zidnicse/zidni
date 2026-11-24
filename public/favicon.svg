@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#101015" />
+      <stop offset="100%" stop-color="#09090B" />
+    </linearGradient>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#06B6D4" />
+    </linearGradient>
+    <linearGradient id="borderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#06B6D4" stop-opacity="0.3" />
+    </linearGradient>
+  </defs>
+  <!-- Background Container -->
+  <rect x="6" y="6" width="116" height="116" rx="28" fill="url(#bgGrad)" stroke="url(#borderGrad)" stroke-width="3" />
+  
+  <!-- Subtle Glow Effect -->
+  <circle cx="64" cy="64" r="32" fill="#8B5CF6" opacity="0.15" filter="blur(16px)" />
+  
+  <!-- Stylized Geometric "Z" -->
+  <path d="M 38 40 L 90 40 C 93 40 94 43 92 45 L 48 88 L 92 88 C 94 88 95 90 95 92 L 95 94 C 95 96 94 98 92 98 L 38 98 C 35 98 34 95 36 93 L 80 50 L 38 50 C 36 50 35 48 35 46 L 35 44 C 35 42 36 40 38 40 Z" fill="url(#brandGrad)" />
+  
+  <!-- Accent Tech Dots -->
+  <circle cx="94" cy="38" r="4" fill="#06B6D4" />
+  <circle cx="34" cy="100" r="3" fill="#8B5CF6" />
+</svg>
